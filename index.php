@@ -8,7 +8,7 @@
 
 
 
-require "vendor/autoload.php"
+require_once('vendor/autoload.php');
 
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here https://dashboard.stripe.com/account/apikeys
@@ -32,6 +32,8 @@ try {
 		$response = array( 'status'=> 'Failure', 'message'=>'Your payment could NOT be processed because the payment system rejected the transaction. You can try again or use another card.' );
 	}
 	header('Content-Type: application/json');
+	
+	echo json_encode($response);
 	
 } catch(\Stripe\Error\Card $e) {
     // The card has been declined
